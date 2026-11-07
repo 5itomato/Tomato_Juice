@@ -14,13 +14,13 @@ export const theme: ThemeUserConfig = {
   socialCard: '/images/social-card.png',
   /** Specify the default language for this site. */
   locale: {
-    lang: 'zh-CN',
-    attrs: 'zh_CN',
+    lang: 'en-US',
+    attrs: 'en_US',
     // Date locale
-    dateLocale: 'zh-CN',
+    dateLocale: 'en-US',
     dateOptions: {
       day: 'numeric',
-      month: 'long',
+      month: 'short',
       year: 'numeric'
     }
   },
@@ -48,11 +48,11 @@ export const theme: ThemeUserConfig = {
   /** Configure the header of your site. */
   header: {
     menu: [
-      { title: '博客', link: '/blog' },
-      { title: '文档', link: '/docs' },
-      { title: '项目', link: '/projects' },
-      { title: '友链', link: '/links' },
-      { title: '关于', link: '/about' }
+      { title: 'Blog', link: '/blog' },
+      { title: 'Docs', link: '/docs' },
+      { title: 'Projects', link: '/projects' },
+      { title: 'Links', link: '/links' },
+      { title: 'About', link: '/about' }
     ]
   },
 
@@ -103,11 +103,11 @@ export const theme: ThemeUserConfig = {
 }
 
 export const docsSidebar = {
-  title: '文档',
+  title: 'Documentation',
   categories: [
-    { id: 'setup', title: '快速开始' },
-    { id: 'integrations', title: '功能集成' },
-    { id: 'advanced', title: '进阶使用' }
+    { id: 'setup', title: 'Setup' },
+    { id: 'integrations', title: 'Integrations' },
+    { id: 'advanced', title: 'Advanced' }
   ]
 } as const
 
