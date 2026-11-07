@@ -3,6 +3,7 @@ import { type CollectionEntry } from 'astro:content'
 
 import { getBlogCollection } from 'astro-pure/server'
 import { cn } from 'astro-pure/utils'
+import { docsSidebar } from '@/site-config'
 
 export const prerender = true
 export const partial = true
@@ -16,12 +17,6 @@ const docsByCate = docsCollection.reduce((acc: { [key: string]: typeof docsColle
   return acc
 }, {})
 
-const docCategories = {
-  setup: 'Setup',
-  integrations: 'Integrations',
-  advanced: 'Advanced'
-}
-
 type Props = {
   title?: boolean
   class?: string
@@ -31,25 +26,35 @@ const { title = true, class: className, ...props } = Astro.props
 ---
 
 <docs-toc class={cn('not-prose', className)} {...props}>
-  {title && <h2 class='text-foreground font-medium'>DOCS</h2>}
+  {title && <h2 class='text-foreground font-medium'>{docsSidebar.title}</h2>}
   <ul class='mt-4 flex flex-col gap-y-5'>
     {
-      Object.entries(docCategories).map(([id, title]: [string, string]) => (
-        <li>
-          <h3 class='text-muted-foreground text-xs tracking-widest uppercase'>{title}</h3>
-          <ul class='mt-2 flex flex-col'>
-            {docsByCate[id]
-              .sort((a, b) => a.data.order - b.data.order)
-              .map((doc) => (
-                <li class='docs-item flex relative ms-2 px-3 py-1 text-foreground/75 transition-all rounded-2xl'>
-                  <a class='min-w-0 flex-1 break-words hover:text-foreground' href={`/docs/${doc.id}`}>
-                    {doc.data.title}
-                  </a>
-                </li>
-              ))}
-          </ul>
-        </li>
-      ))
+      docsSidebar.categories.map(({ id, title: categoryTitle }) => {
+        const categoryDocs = docsByCate[id] ?? []
+        return (
+          categoryDocs.length > 0 && (
+            <li>
+              <h3 class='text-muted-foreground text-xs tracking-widest uppercase'>
+                {categoryTitle}
+              </h3>
+              <ul class='mt-2 flex flex-col'>
+                {categoryDocs
+                  .sort((a, b) => a.data.order - b.data.order)
+                  .map((doc) => (
+                    <li class='docs-item flex relative ms-2 px-3 py-1 text-foreground/75 transition-all rounded-2xl'>
+                      <a
+                        class='min-w-0 flex-1 break-words hover:text-foreground'
+                        href={`/docs/${doc.id}`}
+                      >
+                        {doc.data.title}
+                      </a>
+                    </li>
+                  ))}
+              </ul>
+            </li>
+          )
+        )
+      })
     }
   </ul>
 </docs-toc>

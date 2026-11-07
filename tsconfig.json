@@ -27,5 +27,13 @@
     }
     // https://docs.astro.build/en/guides/typescript/#typescript-editor-plugin
   },
-  "exclude": ["./node_modules", "./**/node_modules/*", "./.vscode", "./dist", "./public/scripts/*", "./test/*"]
+  "exclude": [
+    "./node_modules",
+    "./**/node_modules/*",
+    "./.vscode",
+    "./dist",
+    "./packages/pure",
+    "./public/scripts/*",
+    "./test/*"
+  ]
 }
