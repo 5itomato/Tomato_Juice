@@ -7,7 +7,7 @@ tags:
   - 考研数学
   - 数学
   - 学习笔记
-draft: true
+draft: false
 ---
 
 # 考研数学复习笔记
